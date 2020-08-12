@@ -1,0 +1,18 @@
+Package: GapClust
+Type: Package
+Title: Detecting rare cells from expression profiles by single cell RNA-seq
+Version: 0.1.0
+Depends: R (>= 3.3.0)
+Imports: stats, Seurat, irlba, rflann, e1071
+Author: Botao Fa
+Maintainer: The package maintainer <faber@sjtu.edu.cn>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+    GapClust takes advantage of the gap between minor cluster and neighbouring
+    abundant cluster to let rare cells within minor cluster stand out through
+    delicately designed statistics. Meanwhile, GapClust does not
+    struggle to search for rare cell informative genes like most of the competitors,
+    but learns the cluster size as well as rare cells using simple arithmetic calculation.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
