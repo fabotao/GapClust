@@ -18,7 +18,7 @@ irlba
 e1071
 ```
 ## Performance evaluation
-![] (/image/performance.png)
+![] (https://github.com/fabotao/GapClust/blob/master/image/performance.png)
 
 
 ## Publications
