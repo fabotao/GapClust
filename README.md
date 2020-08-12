@@ -18,7 +18,7 @@ irlba
 e1071
 ```
 ## Performance evaluation
-! [] (../files_for_Github/performance.png)
+![] (/image/performance.png)
 
 
 ## Publications
