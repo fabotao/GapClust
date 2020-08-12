@@ -19,9 +19,12 @@ e1071
 ```
 ## Performance evaluation
   <img src="image/performance.png" width="1000" height="230" />
+  
   In terms of rare cell detection, GapClust offers best performance compared with other methods, quantified by F<sub>1</sub> score.
   
   <img src="image/time_memory.png" width="1000" height="400" />
+
+As to compuation time and memory utilization, GapClust also displays unrivaled speed and memory efficiency, in comparison with other methods.
 
 ## Publications
 
