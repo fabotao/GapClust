@@ -17,6 +17,10 @@ rflann
 irlba
 e1071
 ```
+## Performance evaluation
+! [] (../files_for_Github/performance.png)
+
+
 ## Publications
 
 ## Copyright
