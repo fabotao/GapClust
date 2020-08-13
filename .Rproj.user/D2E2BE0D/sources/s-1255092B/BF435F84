@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "973283248",
     "id" : "BF435F84",
-    "lastKnownWriteTime" : 1597214962,
-    "last_content_update" : 1597214962693,
+    "lastKnownWriteTime" : 1597283881,
+    "last_content_update" : 1597283881697,
     "path" : "~/Documents/FBT/Single/package/GapClust/R/GapClust.R",
     "project_path" : "R/GapClust.R",
     "properties" : {
-        "cursorPosition" : "13,20",
-        "scrollLine" : "0"
+        "cursorPosition" : "70,33",
+        "scrollLine" : "49"
     },
     "relative_order" : 3,
     "source_on_save" : false,

@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("stats", "IQR", "density", "quantile")
+importFrom("Seurat", "CreateSeuratObject", "FindVariableFeatures")
+importFrom("rflann", "Neighbour")
+importFrom("irlba", "irlba")
+importFrom("e1071", "skewness")

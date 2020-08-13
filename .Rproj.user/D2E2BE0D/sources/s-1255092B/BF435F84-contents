@@ -68,7 +68,8 @@ GapClust <- function(data, k=200){
   for(id.match in id.max.match){
     rare.cells[[as.character(ids[id.match])]] <- knn.res$indices[which.max(v1.k[,ids[id.match]]), 1:(ids[id.match]+1)]
   }
-  return(rare.cells)
+  results <- list(skewness=skew, rare_cell_indices=rare.cells, rare_score=v1.k)
+  return(results)
 }
 
 
