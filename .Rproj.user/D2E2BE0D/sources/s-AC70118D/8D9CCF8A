@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1598844813859.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8D9CCF8A",
+    "lastKnownWriteTime" : 1598864652,
+    "last_content_update" : 1598864652689,
+    "path" : "~/Documents/FBT/Single/package/GapClust/R/GapClust.R",
+    "project_path" : "R/GapClust.R",
+    "properties" : {
+        "cursorPosition" : "78,40",
+        "scrollLine" : "59"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

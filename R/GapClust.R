@@ -77,6 +77,8 @@ GapClust <- function(data, k=200){
   }
 
   id.max <- apply(col.mat, 2, which.max)
+  max.val <- apply(col.mat, 2, max)
+  id.max[max.val==0] <- 0
   cnt <- table(id.max)
   id.max.match <- as.integer(names(cnt)[which(cnt == ids[sort(unique(id.max))] + 1)])
 
