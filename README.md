@@ -19,9 +19,9 @@ devtools::install_github("fabotao/GapClust")
 ## R packages prerequisites
 ```
 Seurat >=  3.1.0
-rflann 1.8.4 (GitHub: YeeJeremy/rflann)
+rflann >=1.8.4 (GitHub: YeeJeremy/rflann)
 irlba >=2.3.3
-e1071 > 1.7-0.1
+e1071 >= 1.7-0.1
 ```
 ## Performance evaluation
   <img src="image/performance.png" width="1000" height="230" />
