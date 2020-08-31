@@ -8,7 +8,7 @@ struggle to search for rare cell informative genes like most of the competitors,
 ## Installation
 R users  can easily install GapClust by running following code in R console. 
 ```
-# Install devtools first if it has not been installed on your R environment. Please try "install.packages("devtools")"
+# Install devtools first if it has not been installed on your R environment. Please try "install.packages("devtools")" in R console.
 devtools::install_github("fabotao/GapClust")
 ```
 ## R packages prerequisites
