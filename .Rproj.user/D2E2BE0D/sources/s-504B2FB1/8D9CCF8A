@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "8D9CCF8A",
-    "lastKnownWriteTime" : 1598864652,
-    "last_content_update" : 1598864652689,
+    "lastKnownWriteTime" : 1598882633,
+    "last_content_update" : 1598882633611,
     "path" : "~/Documents/FBT/Single/package/GapClust/R/GapClust.R",
     "project_path" : "R/GapClust.R",
     "properties" : {
-        "cursorPosition" : "78,40",
-        "scrollLine" : "59"
+        "cursorPosition" : "100,0",
+        "scrollLine" : "81"
     },
     "relative_order" : 1,
     "source_on_save" : false,

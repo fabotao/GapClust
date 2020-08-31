@@ -45,7 +45,7 @@ GapClust <- function(data, k=200){
   features.vst <- dimnames(data)[[1]][vst > find_elbow(den$x[which.max(den$y):length(den$x)], den$y[which.max(den$y):length(den$y)])]
   tmp <- data[dimnames(data)[[1]] %in% (features.vst),]
   tmp <- log2(as.matrix(tmp)+1)
-  pca <- irlba(t(tmp), nv=50) # More robust no error, contrast to calcul.pca
+  pca <- irlba(t(tmp), nv=min(c(50, dim(tmp)-1))) # More robust no error, contrast to calcul.pca
   pca$pca <-t(pca$d*t(pca$u))
   knn.res <- Neighbour(pca$pca, pca$pca, k=k)
 
@@ -56,6 +56,7 @@ GapClust <- function(data, k=200){
 
   v1.k <- matrix(NA, dim(data)[2], k-3)
   skew <- c()
+  top.values.ave <- c()
   for(j in 1:dim(diff.both)[2]){
     v <- diff.both[,j]
     v1 <- v
@@ -64,23 +65,26 @@ GapClust <- function(data, k=200){
     }
     v1.k[, j] <- (v1)
     v2 <- v1[order(v1, decreasing = T)[(j+2):length(v1)]]
+    v2[is.na(v2)] <- 0
     top.values <- v1[knn.res$indices[which.max(v1),1:(j+1)]]
     v2 <- c(v2[v2 <= (quantile(v2, 0.75)+1.5*IQR(v2)) & v2 >= (quantile(v2, 0.25)-1.5*IQR(v2))], rep(sum(top.values[top.values>0])/length(top.values), (2)))
     skew <- c(skew, skewness(v2))
+    top.values.ave <- c(top.values.ave, mean(top.values))
   }
 
   ids <- which(skew > 2)
   col.mat <- matrix(0, length(ids), dim(tmp)[2])
   for(i in 1:length(ids)){
     top.cell <- which.max(v1.k[,(ids[i])])
-    col.mat[i, knn.res$indices[top.cell,1:(ids[i]+1)]] <- skew[ids[i]]
+    col.mat[i, knn.res$indices[top.cell,1:(ids[i]+1)]] <- skew[ids[i]] * top.values.ave[ids[i]]
   }
 
   id.max <- apply(col.mat, 2, which.max)
   max.val <- apply(col.mat, 2, max)
   id.max[max.val==0] <- 0
   cnt <- table(id.max)
-  id.max.match <- as.integer(names(cnt)[which(cnt == ids[sort(unique(id.max))] + 1)])
+  cnt <- cnt[names(cnt)!='0']
+  id.max.match <- cnt[which(cnt == (ids[as.integer(names(cnt))] + 1))] - 1
 
   cls <- rep(0, dim(tmp)[2])
   for(id.match in id.max.match){
@@ -89,7 +93,7 @@ GapClust <- function(data, k=200){
 
   rare.cells <- list()
   for(id.match in id.max.match){
-    rare.cells[[as.character(ids[id.match])]] <- knn.res$indices[which.max(v1.k[,ids[id.match]]), 1:(ids[id.match]+1)]
+    rare.cells[[as.character(id.match)]] <- knn.res$indices[which.max(v1.k[,id.match]), 1:(id.match+1)]
   }
   results <- list(skewness=skew, rare_cell_indices=rare.cells, rare_score=v1.k)
   return(results)
