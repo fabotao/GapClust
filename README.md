@@ -6,6 +6,11 @@ GapClust takes advantage of the gap between minor cluster and neighbouring abund
 struggle to search for rare cell informative genes like most of the competitors, but learns the cluster size as well as rare cells using simple arithmetic calculation.
 
 ## Installation
+### Required R modules
+```
+R >= 3.4.0
+
+```
 R users  can easily install GapClust by running following code in R console. 
 ```
 # Install devtools first if it has not been installed on your R environment. Please try "install.packages("devtools")" in R console.
@@ -13,10 +18,10 @@ devtools::install_github("fabotao/GapClust")
 ```
 ## R packages prerequisites
 ```
-Seurat
-rflann
-irlba
-e1071
+Seurat >=  3.1.0
+rflann 1.8.4 (GitHub: YeeJeremy/rflann)
+irlba >=2.3.3
+e1071 > 1.7-0.1
 ```
 ## Performance evaluation
   <img src="image/performance.png" width="1000" height="230" />
