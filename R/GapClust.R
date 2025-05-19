@@ -47,6 +47,8 @@ GapClust <- function(data, k=200){
   tmp <- log2(as.matrix(tmp)+1)
   N = dim(tmp)[2]
   pca <- irlba(t(tmp), nv=min(c(50, dim(tmp)-1))) # More robust no error, contrast to calcul.pca
+  rm(list=c('pbmc', 'data', 'tmp'))
+  
   pca$pca <-t(pca$d*t(pca$u))
   knn.res <- Neighbour(pca$pca, pca$pca, k=k)
 
@@ -55,8 +57,8 @@ GapClust <- function(data, k=200){
   diff.both <- diff.left[, -ncol(diff.left), drop=FALSE] - diff.left[, -1, drop=FALSE]
   diff.both[,1] <- diff.both[,1] + distance.diff[,1]  # Very important due to distance variation to the first neighbor.
 
-  v1.k <- matrix(NA, dim(data)[2], k-3)
-  rm(list=c('pbmc', 'data', 'tmp', 'pca', 'distance.diff', 'diff.left'))
+  v1.k <- matrix(NA, N, k-3)
+  rm(list=c('pca', 'distance.diff', 'diff.left'))
   gc()
   skew <- c()
   top.values.ave <- c()
