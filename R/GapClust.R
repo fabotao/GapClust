@@ -45,6 +45,7 @@ GapClust <- function(data, k=200){
   features.vst <- dimnames(data)[[1]][vst > find_elbow(den$x[which.max(den$y):length(den$x)], den$y[which.max(den$y):length(den$y)])]
   tmp <- data[dimnames(data)[[1]] %in% (features.vst),]
   tmp <- log2(as.matrix(tmp)+1)
+  N = dim(tmp)[2]
   pca <- irlba(t(tmp), nv=min(c(50, dim(tmp)-1))) # More robust no error, contrast to calcul.pca
   pca$pca <-t(pca$d*t(pca$u))
   knn.res <- Neighbour(pca$pca, pca$pca, k=k)
@@ -55,6 +56,8 @@ GapClust <- function(data, k=200){
   diff.both[,1] <- diff.both[,1] + distance.diff[,1]  # Very important due to distance variation to the first neighbor.
 
   v1.k <- matrix(NA, dim(data)[2], k-3)
+  rm(list=c('pbmc', 'data', 'tmp', 'pca', 'distance.diff', 'diff.left'))
+  gc()
   skew <- c()
   top.values.ave <- c()
   for(j in 1:dim(diff.both)[2]){
@@ -73,7 +76,11 @@ GapClust <- function(data, k=200){
   }
 
   ids <- which(skew > 2)
-  col.mat <- matrix(0, length(ids), dim(tmp)[2])
+  if(length(ids) < 1){
+    print('No rare cell cluster identified')
+    return(NA)
+  }
+  col.mat <- matrix(0, length(ids), N)
   for(i in 1:length(ids)){
     top.cell <- which.max(v1.k[,(ids[i])])
     col.mat[i, knn.res$indices[top.cell,1:(ids[i]+1)]] <- skew[ids[i]] * top.values.ave[ids[i]]
@@ -86,7 +93,7 @@ GapClust <- function(data, k=200){
   cnt <- cnt[names(cnt)!='0']
   id.max.match <- cnt[which(cnt == (ids[as.integer(names(cnt))] + 1))] - 1
 
-  cls <- rep(0, dim(tmp)[2])
+  cls <- rep(0, N)
   for(id.match in id.max.match){
     cls[id.max==(id.match)] <- which(id.max.match %in% id.match)
   }
